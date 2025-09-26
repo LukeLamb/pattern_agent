@@ -2,4 +2,4 @@
 
 from .context_analyzer import MarketContextAnalyzer
 
-__all__ = ['MarketContextAnalyzer']
+__all__ = ["MarketContextAnalyzer"]

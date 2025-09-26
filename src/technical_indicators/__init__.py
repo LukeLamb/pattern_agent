@@ -2,4 +2,4 @@
 
 from .indicator_engine import TechnicalIndicatorEngine
 
-__all__ = ['TechnicalIndicatorEngine']
+__all__ = ["TechnicalIndicatorEngine"]
