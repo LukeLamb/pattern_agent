@@ -140,7 +140,7 @@ class PatternDetectionEngine:
         Returns:
             List of DetectedPattern objects
         """
-        df = market_data.to_dataframe()
+        df = market_data.to_dataframe(set_timestamp_index=False)
 
         if len(df) < self.min_pattern_length:
             return []
@@ -395,7 +395,12 @@ class PatternDetectionEngine:
         confidence_base = 0.6
 
         # Normalize slopes for comparison (price change per time unit)
-        time_range = (overlap_end - overlap_start).total_seconds() / 86400  # days
+        time_delta = overlap_end - overlap_start
+        if isinstance(time_delta, pd.Timedelta):
+            time_range = time_delta.total_seconds() / 86400  # days
+        else:
+            # Handle numpy.timedelta64 objects
+            time_range = pd.Timedelta(time_delta).total_seconds() / 86400  # days
         if time_range > 0:
             support_slope_norm = support_slope * time_range
             resistance_slope_norm = resistance_slope * time_range

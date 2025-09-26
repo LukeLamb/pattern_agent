@@ -120,8 +120,12 @@ class MarketData(BaseModel):
             raise ValueError("End time must be after start time")
         return self
 
-    def to_dataframe(self) -> pd.DataFrame:
-        """Convert market data to pandas DataFrame."""
+    def to_dataframe(self, set_timestamp_index: bool = True) -> pd.DataFrame:
+        """Convert market data to pandas DataFrame.
+
+        Args:
+            set_timestamp_index: If True, set timestamp as index. If False, keep as column.
+        """
         data_dicts = []
         for ohlcv in self.data:
             data_dicts.append(
@@ -136,7 +140,8 @@ class MarketData(BaseModel):
             )
 
         df = pd.DataFrame(data_dicts)
-        df.set_index("timestamp", inplace=True)
+        if set_timestamp_index:
+            df.set_index("timestamp", inplace=True)
         return df
 
     @classmethod
