@@ -18,18 +18,21 @@ This Pattern Recognition Agent operates as a Level 3-4 Agentic AI system followi
 ## Supported Patterns
 
 ### Continuation Patterns
+
 - Triangles (ascending, descending, symmetrical)
 - Flags and pennants
 - Rectangles and channels
 - Cup and handle formations
 
 ### Reversal Patterns
+
 - Head and shoulders (regular and inverse)
 - Double/triple tops and bottoms
 - Wedges (rising and falling)
 - Rounding tops and bottoms
 
 ### Breakout Patterns
+
 - Support/resistance breaks
 - Trendline breaks
 - Volume breakouts
@@ -37,7 +40,7 @@ This Pattern Recognition Agent operates as a Level 3-4 Agentic AI system followi
 
 ## Architecture
 
-```
+```bash
 src/
 ├── pattern_detection/     # Core pattern recognition engines
 ├── technical_indicators/  # Technical analysis calculations
@@ -50,18 +53,21 @@ src/
 ## Installation
 
 1. Clone the repository:
+
 ```bash
 git clone git@github.com:LukeLamb/pattern_agent.git
 cd pattern_agent
 ```
 
 2. Create a virtual environment:
+
 ```bash
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 ```
 
 3. Install dependencies:
+
 ```bash
 pip install -r requirements.txt
 ```
