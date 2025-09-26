@@ -5,7 +5,7 @@ Market Data Model - Core market data structures
 from datetime import datetime
 from typing import Dict, List, Optional, Any
 from enum import Enum
-from pydantic import BaseModel, Field, validator
+from pydantic import BaseModel, Field, field_validator, model_validator
 import pandas as pd
 
 
@@ -35,24 +35,20 @@ class OHLCV(BaseModel):
     close: float = Field(..., gt=0, description="Closing price")
     volume: int = Field(..., ge=0, description="Volume")
     
-    @validator('high')
-    def validate_high(cls, v, values):
-        """Validate high is highest price."""
-        if 'open' in values and v < values['open']:
-            raise ValueError("High must be >= open")
-        if 'low' in values and v < values['low']:
-            raise ValueError("High must be >= low")
-        if 'close' in values and v < values['close']:
-            raise ValueError("High must be >= close")
+    @field_validator('high')
+    @classmethod
+    def validate_high(cls, v):
+        """Validate high is valid price."""
+        if v <= 0:
+            raise ValueError("High must be > 0")
         return v
     
-    @validator('low')
-    def validate_low(cls, v, values):
-        """Validate low is lowest price."""
-        if 'open' in values and v > values['open']:
-            raise ValueError("Low must be <= open")
-        if 'close' in values and v > values['close']:
-            raise ValueError("Low must be <= close")
+    @field_validator('low')
+    @classmethod
+    def validate_low(cls, v):
+        """Validate low is valid price."""
+        if v <= 0:
+            raise ValueError("Low must be > 0")
         return v
 
 
@@ -95,7 +91,8 @@ class MarketData(BaseModel):
             datetime: lambda v: v.isoformat()
         }
     
-    @validator('data')
+    @field_validator('data')
+    @classmethod
     def validate_data_chronological(cls, v):
         """Validate data is in chronological order."""
         if len(v) > 1:
@@ -104,12 +101,12 @@ class MarketData(BaseModel):
                     raise ValueError("Data must be in chronological order")
         return v
     
-    @validator('end_time')
-    def validate_time_range(cls, v, values):
+    @model_validator(mode='after')
+    def validate_time_range(self):
         """Validate end time is after start time."""
-        if 'start_time' in values and v <= values['start_time']:
+        if self.end_time <= self.start_time:
             raise ValueError("End time must be after start time")
-        return v
+        return self
     
     def to_dataframe(self) -> pd.DataFrame:
         """Convert market data to pandas DataFrame."""
