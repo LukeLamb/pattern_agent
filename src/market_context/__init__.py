@@ -1,5 +1,25 @@
-"""Market Context Package"""
+"""
+Market Context Analysis Module
 
-from .context_analyzer import MarketContextAnalyzer
+Provides market regime detection and context-aware pattern analysis.
+"""
 
-__all__ = ["MarketContextAnalyzer"]
+from .context_analyzer import (
+    MarketContextAnalyzer,
+    MarketContext,
+    VolatilityRegime,
+    TrendDirection,
+    MarketRegime,
+    MarketBreadth,
+    RegimeAdaptation
+)
+
+__all__ = [
+    'MarketContextAnalyzer',
+    'MarketContext',
+    'VolatilityRegime',
+    'TrendDirection',
+    'MarketRegime',
+    'MarketBreadth',
+    'RegimeAdaptation',
+]
