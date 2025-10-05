@@ -4,24 +4,26 @@ A sophisticated AI-powered trading pattern recognition system that analyzes mark
 
 ## 📊 Project Status
 
-**Current Phase:** Phase 2.1, 2.2 & 2.3 Complete ✅ → Phase 2.4 Next
-**Total Codebase:** 10,250+ lines of production Python
-**Test Coverage:** 78/78 tests passing (100% pass rate)
-**Performance:** <500ms pattern detection, multi-timeframe confluence, context-aware adaptation
+**Current Phase:** Phase 2.1-2.4 Complete ✅ → Phase 2.5 Next
+**Total Codebase:** 11,700+ lines of production Python
+**Test Coverage:** 104/104 tests passing (100% pass rate)
+**Performance:** <500ms pattern detection, multi-timeframe confluence, context-aware validation
 
 ## Overview
 
 This Pattern Recognition Agent operates as a Level 3-4 Agentic AI system following the SPAR framework (Sense, Plan, Act, Reflect) and serves as the analytical brain for trading decision support.
 
-## 🎯 Current Capabilities (Phase 1 & Phase 2.1-2.3 Complete)
+## 🎯 Current Capabilities (Phase 1 & Phase 2.1-2.4 Complete)
 
 ### Core Features
 - **23 Technical Indicators** across 4 categories (Trend, Momentum, Volume, Volatility)
 - **15 Pattern Types** with mathematical validation (5 basic + 10 advanced)
 - **Multi-Timeframe Analysis** with 9 timeframe support and confluence scoring
 - **Market Context Analysis** with 4 volatility regimes, 4 trend directions, 5 market regimes
+- **Pattern-Regime Affinity Matrix** - Maps all 15 patterns to 5 market regimes
+- **Context-Aware Validation** - Adjusts confidence based on market conditions (±20%)
+- **Enhanced Recommendations** - 4-level strength with supporting reasons & risk warnings
 - **Adaptive Parameters** that adjust based on market conditions
-- **5-Criteria Validation** system with weighted scoring (0.0-1.0 scale)
 - **Multi-Format Output** (PNG charts, JSON reports, CSV exports)
 - **Production-Ready Performance** (<500ms target achieved)
 
@@ -49,7 +51,7 @@ src/
 ├── models/                # Core data structures (Pattern, MarketData, Signal)
 ├── pattern_detection/     # 15 pattern types with mathematical validation
 ├── technical_indicators/  # 23 indicators across 4 categories
-├── validation/            # 5-criteria pattern validation system
+├── validation/            # Enhanced pattern validation with context (Phase 2.4) ✅
 ├── visualization/         # Chart generation with matplotlib/seaborn
 ├── reporting/             # JSON/CSV/HTML report generation
 ├── analysis/              # Multi-timeframe analysis (Phase 2.1) ✅
@@ -57,11 +59,12 @@ src/
 ├── signal_generation/     # Trading signal generation (Phase 2.5+)
 └── memory/                # Pattern learning system (Phase 2.5+)
 
-tests/                     # Comprehensive test suite (78/78 passing)
+tests/                     # Comprehensive test suite (104/104 passing)
 ├── test_integration.py              # 7 integration tests
 ├── test_multi_timeframe.py          # 18 multi-timeframe tests
 ├── test_advanced_patterns.py        # 25 advanced pattern tests
 ├── test_market_context.py           # 28 market context tests
+├── test_enhanced_validation.py      # 26 enhanced validation tests
 └── ...
 
 docs/

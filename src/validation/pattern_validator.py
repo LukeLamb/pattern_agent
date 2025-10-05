@@ -6,14 +6,16 @@ This module provides validation and scoring systems for detected patterns includ
 - Volume confirmation validation
 - Timeframe consistency checks
 - Pattern strength scoring system
-- Market context validation
+- Market context validation (Phase 2.4: Enhanced with MarketContext integration)
+- Pattern-regime affinity scoring
+- Context-aware confidence adjustment
 """
 
 from typing import Dict, List, Optional, Tuple, Union
 import pandas as pd
 import numpy as np
 from datetime import datetime, timedelta
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from enum import Enum
 
 try:
@@ -26,6 +28,12 @@ try:
         TrendLine,
     )
     from ..models.market_data import MarketData
+    from ..market_context import (
+        MarketContext,
+        MarketRegime,
+        VolatilityRegime,
+        TrendDirection,
+    )
 except ImportError:
     # For testing and development
     import sys
@@ -41,6 +49,18 @@ except ImportError:
         TrendLine,
     )
     from models.market_data import MarketData
+    try:
+        from market_context import (
+            MarketContext,
+            MarketRegime,
+            VolatilityRegime,
+            TrendDirection,
+        )
+    except ImportError:
+        MarketContext = None  # Make optional for backward compatibility
+        MarketRegime = None
+        VolatilityRegime = None
+        TrendDirection = None
 
 
 class ValidationCriteria(Enum):
