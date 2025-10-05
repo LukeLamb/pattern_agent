@@ -41,6 +41,22 @@ class PatternType(Enum):
     HEAD_AND_SHOULDERS = "head_and_shoulders"
     INVERSE_HEAD_AND_SHOULDERS = "inverse_head_and_shoulders"
 
+    # Flag and Pennant Patterns (Phase 2.2)
+    BULL_FLAG = "bull_flag"
+    BEAR_FLAG = "bear_flag"
+    PENNANT = "pennant"
+
+    # Double/Triple Patterns (Phase 2.2)
+    DOUBLE_TOP = "double_top"
+    DOUBLE_BOTTOM = "double_bottom"
+    TRIPLE_TOP = "triple_top"
+    TRIPLE_BOTTOM = "triple_bottom"
+
+    # Channel Patterns (Phase 2.2)
+    RECTANGLE = "rectangle"
+    ASCENDING_CHANNEL = "ascending_channel"
+    DESCENDING_CHANNEL = "descending_channel"
+
     # Support and Resistance
     SUPPORT_LEVEL = "support_level"
     RESISTANCE_LEVEL = "resistance_level"
@@ -111,6 +127,7 @@ class DetectedPattern:
     target_price: Optional[float] = None
     stop_loss: Optional[float] = None
     volume_confirmation: bool = False
+    direction: str = "neutral"  # bullish, bearish, neutral
 
 
 class PatternDetectionEngine:
